@@ -1,0 +1,116 @@
+html{
+    overflow-y:visible !important; /* overide propriété du bulma.Css */
+}
+
+.mainContent{
+
+}
+.subContent{
+      width: 80vw;
+}
+
+p{
+      margin: 0.5rem;
+}
+
+input{
+
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white !important;
+    background-color: #4EBF26;
+    padding: 1rem;
+    border-radius: 0 0 1rem 1rem  ;
+    border: solid #2C9D04 5px;
+    border-top: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+}
+
+
+input {
+      font-size: 2rem;
+      width: 99%;
+      text-align: center;
+      border-radius: 1rem;
+      border: 0;
+}
+
+.inputMini{
+      margin-right: 3rem;
+}
+
+.multipleInput > * {
+      width: 100%;
+}
+
+.insideForm{
+      background-color: #2C9D04;
+      border-radius: 1rem;
+      margin-bottom: 3rem;
+}
+
+.subBlockForm {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 15px;
+}
+
+.subBlockForm > * {
+      margin: 10px 0;
+}
+
+.subBlockTitle {
+      font-weight: bold;
+}
+
+.rangeBar {
+      width: 50%;
+      margin: 0 auto;
+}
+
+
+.cardProduitDispo {
+      width: 30%;
+
+      border-radius: 15px;
+      border: 5px solid white;
+      padding: 0.5rem;
+      margin: 10px 10px;
+}
+
+.cardProduitDispo div input {
+
+}
+
+.collecteSub {
+      width: 100%;
+      justify-content: space-between;
+}
+
+.btn {
+	background-color: #2C9D04;
+    margin: 1rem;
+	border: 1px white solid;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 1.5rem;
+	padding: 12px 25px;
+	cursor: pointer;
+	transition: background-color ease-in-out 0.2s;
+}
+
+.btn:hover{
+	background-color: #4EBF26;
+}

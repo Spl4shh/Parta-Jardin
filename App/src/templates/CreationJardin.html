@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation Jardin</title>
+
+    <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/creationJardin.css">
+
+    <link rel="stylesheet" href="/static/css/authentification.css" />
+</head>
+<body>
+        {%if user %}
+            {%if user.typeUser == "proprietaire" %}
+                {% include '/component/barreNavigationProprietaire.html' %}
+            {% else %}
+                {% include '/component/barreNavigationEtudiant.html' %}
+            {% endif %}
+        {% endif %}
+    <div class="mainContent">
+        <div class="top-main-content">
+              <div class="title">
+                    Création d'un jardin
+              </div>
+        </div>
+        {% if message != "" %}
+            <div style="margin: 0 auto;">
+                <p style="color: red;">
+                    {{ message }}
+                </p>
+            </div>
+        {% endif %}
+        <div class="subContent">
+            <form action="" method="post" class="flex-vertical">
+                <div class="insideForm flex-vertical">
+                    <div class="subBlockForm">
+                        <p class="subBlockTitle">
+                            Adresse
+                        </p>
+                        <div class="flex-horizontal multipleInput">
+                            <div class="flex-vertical inputMini">
+                                <p>
+                                    Numéro
+                                </p>
+                                <input type="text" name="numAdresse">
+                            </div>
+                            <div class="flex-vertical">
+                                <p>
+                                    Rue
+                                </p>
+                                <input type="text" name="rueAdresse">
+                            </div>
+                        </div>
+                        <div class="flex-horizontal multipleInput">
+                            <div class="flex-vertical inputMini">
+                                <p>
+                                    Code Postal
+                                </p>
+                                <input type="text" name="cpAdresse">
+                            </div>
+                            <div class="flex-vertical">
+                                <p>
+                                    Ville
+                                </p>
+                                <input type="text" name="villeAdresse">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subBlockForm">
+                        <p class="subBlockTitle">
+                            Information complémentaire
+                        </p>
+                        <div>
+                            <p>
+                                Description
+                            </p>
+                            <input type="text" name="description">
+                        </div>
+                        <div>
+                            <p>
+                                Lien de l'image du Jardin
+                            </p>
+                            <input type="text" name="lienImage">
+                        </div>
+                    </div>
+                    <div class="flex-vertical flex-centered">
+                         <button type="submit" class="button btn action-main-button" onclick="return verificationChamps()">
+                             Ajouter ce jardin
+                         </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+.arriereplan {
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url(../image/arriereplan_auth.png) !important;
+    background-size: cover;
+}
+
+.boutonauth {
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    align-items: center;
+    display: flex;
+    font-size: 10px;
+}
+
+.boutonauth::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 20%;
+    background: #fff;
+}
+
+.boutonanim::after {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+    transition: transform 0.3s ease;
+}
+
+.boutonanim:hover::after {
+    transform: scale(1, 1);
+}
+
+.choix {
+    font-family: 'Dosis', sans-serif;
+    font-size: 25px;
+    color: black;
+    align-items: center;
+}
+
+.accueil {
+    background-color: #0F8A00;
+    padding: 10%;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.deconnexion {
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    margin-top: 50px;
+    padding: 3px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.deconnexion:hover {
+    background-color: darkred;
+}
+
+.accueilAnonyme {
+    margin-bottom: 10px;
+    text-align: justify;
+    font-size: 17px;
+}
+
+.accueilAnonymeCentre {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.inscription {
+    font-family: 'Dosis', sans-serif;
+    color: black;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    margin-top: 50px;
+    padding: 3px 10px;
+    font-size: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.inscription:hover {
+    background-color: blue;
+}
+
+.numeroRue {
+    width: 80px
+}

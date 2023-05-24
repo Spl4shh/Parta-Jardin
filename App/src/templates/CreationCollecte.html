@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation Collecte</title>
+
+    <link rel="stylesheet" href="/static/css/general.css">
+    <link rel="stylesheet" href="/static/css/creationJardin.css">
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+    <div class="mainContent">
+        <div class="top-main-content">
+              <div class="title">
+                    Création d'une collecte
+              </div>
+        </div>
+        {% if message != "" %}
+            <div style="margin: 0 auto;">
+                <p style="color: red;">
+                    {{ message }}
+                </p>
+            </div>
+        {% endif %}
+        <div class="subContent">
+            <form action="" method="post" class="flex-vertical">
+                <div class="insideForm flex-vertical">
+                    <div class="subBlockForm">
+                        <p>
+                            Adresse :
+                        </p>
+                        <p>
+                            <b>{{ jardin.adresseJardin }}</b> <br>
+                            "{{ jardin.description }}"
+                        </p>
+                    </div>
+                    <div class="subBlockForm">
+                        <div class="flex-horizontal">
+                            <div class="flex-vertical collecteSub">
+                                <p>
+                                    Date de la collecte :
+                                </p>
+                                <input type="datetime-local" name="datetimeCollecte">
+                            </div>
+                            <div class="flex-vertical collecteSub">
+                                <p>
+                                    Nombre d'étudiant accepté :
+                                </p>
+                                <input type="number" min=0 max="100" name="nombreEtudiant">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subBlockForm produitDispo flex-vertical">
+                        <p class="flex-centeredw">
+                            Nombre de produit
+                        </p>
+                        <div class="flex-horizontal flex-centered rangeBar">
+                            <input type=range min=1 max=10 value=1 name="nbProduitDispo" id="inputRange">
+                            <div id="valueInputRange">
+                                1
+                            </div>
+                        </div>
+                        <div class="flex-horizontal flex-overflow flex-centered" id="listeProduitDispo">
+                            <div class="cardProduitDispo produit1">
+                                <div>
+                                    <p>
+                                        Produit 1
+                                    </p>
+                                    <input type="text" name="nomProduit1" class="nomProduit1">
+                                </div>
+                                <div>
+                                    <p>
+                                        Quantité estimée (en Kg)
+                                    </p>
+                                    <input type="number" min=0 value=0 step=0.1 name="quantiteProduit1" class="quantiteProduit1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-vertical flex-centered">
+                         <button type="submit" class="button btn action-main-button" onclick="return verificationChamps()">
+                             Ajouter cette collecte
+                         </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="/static/js/creationCollecte.js"></script>
+<script src="/static/js/creationJardin.js"></script>
+
+</html>

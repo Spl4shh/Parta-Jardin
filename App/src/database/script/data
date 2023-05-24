@@ -1,0 +1,22 @@
+INSERT INTO user VALUES (1,'Renard','Nicolas','nicolas.renard@telecomnancy.eu','renardlog','123456','193 Avenue Paul Muller 54600 Villers les nancy','etudiant');
+INSERT INTO user VALUES (2,'Natanelic','Romain','romain.natanelic@telecomnancy.eu','romainlog','125555','23 Rue du je sais pas 57000 Metz','etudiant');
+INSERT INTO user VALUES (3,'Gehin','Clement','clement.gehin@telecomnancy.eu','clementlog','87z4aza','4 avenue de jean pierre 88400 Gerardmer','etudiant');
+
+INSERT INTO jardin VALUES (1,1,'beaucoup de raisin par ici','Rue du bonjour',NULL);
+INSERT INTO jardin VALUES (2,2,'beaucoup de pommes par ici et un peu de raisin','Rue du bonsoir',NULL);
+
+INSERT INTO produit_disponible VALUES (1,1,'Raisin',25);
+INSERT INTO produit_disponible VALUES (2,2,'Raisin',10);
+INSERT INTO produit_disponible VALUES (3,2,'Pommes',25);
+
+INSERT INTO collecte VALUES (1,1,'2022-11-27',12);
+INSERT INTO collecte VALUES (2,1,'2022-11-30',20);
+INSERT INTO collecte VALUES (3,2,'2022-12-02',15);
+
+INSERT INTO inscription_collecte VALUES (1,1);
+INSERT INTO inscription_collecte VALUES (1,2);
+INSERT INTO inscription_collecte VALUES (1,3);
+INSERT INTO inscription_collecte VALUES (2,2);
+INSERT INTO inscription_collecte VALUES (2,3);
+INSERT INTO inscription_collecte VALUES (3,1);
+

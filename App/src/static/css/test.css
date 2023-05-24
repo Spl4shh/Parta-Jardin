@@ -1,0 +1,54 @@
+body {
+      padding: 0;
+      margin: 0;
+      font-size: 30px;
+}
+
+.topBar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      font-size: 40px;
+      padding: 0 20px;
+      margin-bottom: 10px;
+
+      background-color: #494cff;
+}
+
+.blockPhoto {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+}
+
+.card {
+      width: 400px;
+      margin: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.photo {
+      width: inherit;
+      height: auto;
+}
+
+.photo img {
+      width: inherit;
+      height: auto;
+}
+
+.mainBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.mainContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Liste des collectes pour le jardin {{ jardin.id }}</title>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="/static/js/menu.js"></script>
+
+      <link rel="stylesheet" href="/static/css/adhesionCollecte.css">
+      <link rel="stylesheet" href="/static/css/general.css">
+      <link rel="stylesheet" href="/static/css/userMenu.css">
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+      <div class="mainContent">
+            <div class="top-main-content">
+                  <div class="title">
+                        Bienvenue {{ user.nom }} {{ user.prenom }}
+                  </div>
+                  <div>
+
+                  </div>
+            </div>
+            <div class="subContent">
+                  {% if user.typeUser == "proprietaire" %}
+                        {% if collectes %}
+                              <div class="flex-vertical">
+                                    <div class="top-main-content flex-centered">
+                                          <p>Vos collectes :</p>
+                                    </div>
+                                    <div class="liste-jardin flex-justify-centered">
+                                          {% for collecte in collectes %}
+                                                 <div class="card-collecte-container">
+                                                      <div class="card-collecte-content">
+                                                            <div class="card-collecte-content-preview">
+                                                                  <h4>Collecte </h4>
+                                                                  <h4>le {{ collecte.date.strftime('%d/%m/%Y') }}</h4>
+                                                                  <br>
+                                                                  <h6>{{ jardin.description }}</h6>
+                                                                  <a href="{{ url_for("jardin",idJardin=collecte.idJardin) }}">Voir le jardin</a>
+                                                            </div>
+                                                            <div class="card-collecte-info">
+                                                                  <h2>Produits disponibles :</h2>
+                                                                  <ul>
+                                                                        {% for produit in infoCollectes[collecte.id].produitsDispo %}
+                                                                              <li>{{ produit.produit }} : {{ produit.quantite }} kg</li>
+                                                                        {% endfor %}
+                                                                  </ul>
+                                                                  <div class="card-inscription">
+                                                                        {{ infoCollectes[collecte.id].nbInscription }}/{{ collecte.nombreMaxEtudiants }}
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                          {% endfor %}
+                                    </div>
+
+                              </div>
+                        </div>
+                        {% else %}
+                              <div class="flex-vertical flex-centered">
+                                    <p class="texte-block">
+                                         Il n'y a aucune collecte pour ce jardin. <br>
+                                          Pensez à saisir une nouvelle collecte !
+                                    </p>
+                              </div>
+                        {% endif %}
+                        <div class="flex-horizontal flex-centered">
+                            <a href="{{ url_for('creationCollecte', idJardin=jardin.id) }}">
+                                 <button type="button" class="btn button action-main-button">
+                                       Ajouter une collecte
+                                 </button>
+                            </a>
+                        </div>
+                  {% endif %}
+            </div>
+      </div>
+</body>
+</html>

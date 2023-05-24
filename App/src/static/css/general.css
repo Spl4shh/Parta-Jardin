@@ -1,0 +1,112 @@
+@font-face {
+      font-family: "Quicksand";
+      src: url('../font/Quicksand-VariableFont_wght.ttf')
+}
+
+body {
+      padding: 0;
+      margin: 0;
+      font-size: 30px;
+      font-family: Quicksand;
+}
+
+footer{
+      font-size: 16px;
+      text-align: center;
+}
+
+.topBar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      font-size: 40px;
+      padding: 0 20px;
+      margin-bottom: 10px;
+
+      background-color: #494cff;
+}
+
+.fake-topbar {
+      height: 10vh;
+      background-color: #494cff;
+}
+
+.blockPhoto {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+}
+
+.card {
+      width: 450px;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.photo {
+      width: inherit;
+      height: auto;
+}
+
+.photo img {
+      width: inherit;
+      height: auto;
+}
+
+.mainBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.mainContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: normal;
+}
+
+.title {
+      margin-left: 10px;
+}
+
+.subContent {
+      margin: 20px auto 0;
+      min-width: 80%;
+}
+
+.button  {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    width: fit-content;
+    padding: 0.375rem 0.75rem;
+}
+
+.flex-vertical {
+      display: flex;
+      flex-direction: column;
+}
+
+.flex-horizontal {
+      display: flex;
+      flex-direction: row;
+}
+
+.flex-centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.flex-overflow {
+      flex-wrap: wrap;
+}
+
+.flex-justify-centered {
+      display: flex;
+      justify-content: center;
+}

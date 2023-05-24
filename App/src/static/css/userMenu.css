@@ -1,0 +1,168 @@
+
+body {
+    margin: 0;
+    width: 100vw;
+}
+
+.card {
+    font-size: 1.4rem;
+}
+
+.titre-carte {
+    min-height: 4rem;
+    overflow: fragments;
+}
+
+.photo-carte {
+
+}
+
+.jardin-card {
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: lightgray;
+    background-color: #2C9D04 !important;
+    border-radius: 1rem;
+    border: solid #2C9D04 5px;
+    border-right: 0;
+    border-left: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2) !important;
+    display: flex;
+    overflow: hidden;
+    transition: all ease-in-out 0.2s;
+    transform: scale(1);
+}
+
+.jardin-card:hover {
+    transform: scale(1.05);
+}
+
+.jardin-card a .btn {
+    border: solid white 1px !important;
+    margin: 0.8rem;
+}
+
+.jardin-card a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.photo-carte img {
+    width: 100%;
+    height: 300px;
+
+}
+
+.liste-jardin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.adresseJardin {
+    text-align: center;
+}
+
+.description {
+    min-height: 4rem;
+    color: white;
+}
+
+.texte-block {
+    padding: 30px;
+    background-color: #4EBF26;
+    color: white;
+    border: solid 5px #2C9D04;
+    border-radius: 10px;
+}
+
+
+.top-main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white !important;
+    background-color: #4EBF26;
+    padding: 1rem;
+    border: solid #2C9D04 5px;
+    border-top: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 1rem 1rem;
+}
+
+p {
+    margin: 20px 0
+}
+
+.btn {
+    background-color: #2C9D04;
+    margin: 1rem;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: background-color ease-in-out 0.2s;
+}
+
+.btn:hover {
+    background-color: #4EBF26;
+}
+
+.confirmSup {
+    width: fit-content;
+    margin: 0 auto;
+    background-color: #9e1e1e;
+}
+
+.confirmSup:hover {
+    background-color: #f60202;
+}
+
+.texte {
+    background-color: #2C9D04;
+	font-size: 16px;
+    padding: 15px;
+  	color: #fff;
+   	border-radius: 5px;
+}
+
+.deconnexion {
+    background-color: red;
+}
+
+.deconnexion:hover {
+    background-color: darkred;
+}
+
+.deconnexion:hover > a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.deconnexion > a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.btn-red{
+    background-color: #9b0a0a !important;
+}
+
+.btn-red:hover{
+    background-color: #c40d0d !important;
+}

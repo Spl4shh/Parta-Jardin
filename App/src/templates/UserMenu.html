@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Menu Utilisateur</title>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="/static/js/menu.js"></script>
+
+      <link rel="stylesheet" href="/static/css/general.css">
+      <link rel="stylesheet" href="/static/css/userMenu.css">
+        {{ fontawesome_html() }}
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+    <div class="mainContent">
+            <div class="top-main-content">
+                  <div class="title">
+                        Bienvenue {{ user.nom }} {{ user.prenom }}
+                  </div>
+            </div>
+            <div class="subContent flex-vertical">
+                  {% if user.typeUser == "proprietaire" %}
+                        {% if jardins %}
+                              <div class="flex-vertical">
+                                    <div class="top-main-content flex-centered">
+                                          <a href="{{ url_for('creationJardin') }}">
+                                               <button type="button" class="btn action-main-button">
+                                                     Ajouter un nouveau jardin
+                                               </button>
+                                          </a>
+                                    </div>
+                                    <div class="flex-justify-centered">
+                                          {% for jardin in jardins %}
+                                                <div class="card jardin-card">
+                                                    <a href="{{ url_for("jardin",idJardin=jardin.id) }}">
+                                                      <div class="titre-carte">
+                                                          <span class="fas fa-search-location"></span>{{ jardin.adresseJardin }}
+                                                      </div>
+                                                      <div class="photo-carte">
+                                                              <img src="{{ jardin.image }}" alt="">
+                                                      </div>
+                                                      <div>
+                                                          <a href="{{ url_for('creationCollecte', idJardin = jardin.id) }}">
+                                                                 <button type="button" class="button btn">
+                                                                       Organiser une collecte
+                                                                 </button>
+                                                            </a>
+                                                          <a href="{{ url_for('listeCollecte', idJardin = jardin.id) }}">
+                                                                 <button type="button" class="button btn">
+                                                                       Voir les collectes existantes
+                                                                 </button>
+                                                            </a>
+                                                            <div class="description">
+                                                                <span class="fas fa-book-open"></span> {{ jardin.description }}
+                                                            </div>
+                                                      </div>
+                                                    </a>
+                                                </div>
+                                          {% endfor %}
+                                    </div>
+                              </div>
+                        {% else %}
+                              <div class="flex-vertical flex-centered">
+                                    <p class="texte-block">
+                                          Vous n'avez aucun jardin enregistré. <br>
+                                          Pensez à saisir un nouveau jardin afin d'organiser des collectes !
+                                    </p>
+                                    <a href="" >
+                                         <button type="button" class="button action-main-button">
+                                               Ajouter un nouveau jardin
+                                         </button>
+                                    </a>
+                              </div>
+                        {% endif %}
+                  {% else %}
+                        <div class="flex-vertical flex-centered">
+                              {% if collectesUserCourant %}
+                                    <div class="top-main-content flex-centered flex-vertical">
+                                          <a href="{{ url_for('adhesionCollecte') }}">
+                                               <button type="button" class="btn action-main-button">
+                                                     S'inscrire à une collecte
+                                               </button>
+                                          </a>
+                                    </div>
+                                    <p class="texte">
+                                          Les collectes future auxquelles tu es inscrit :
+                                    </p>
+                                    <div class="liste-jardin flex-justify-centered">
+
+                                          {% for collecte in collectesUserCourant %}
+                                                <div class="card jardin-card">
+                                                    <a href="{{ url_for("jardin",idJardin=collecte.idJardin) }}">
+                                                      <div class="titre-carte">
+                                                          <span class="fas fa-search-location"></span>{{ jardinsCollecte[collecte.idJardin].adresseJardin }}
+                                                      </div>
+                                                      <div class="photo-carte">
+                                                              <img src="{{ jardinsCollecte[collecte.idJardin].image }}" alt="">
+                                                      </div>
+                                                      <div>
+                                                            <span class="fas fa-calendar"></span>{{ collecte.date.strftime('%d/%m/%Y') }}
+                                                      </div>
+                                                    </a>
+                                                </div>
+                                          {% endfor %}
+                                    </div>
+
+                              </div>
+                        {% else %}
+                              <div class="flex-vertical flex-centered">
+                                    <p class="texte-block">
+                                          Vous n'êtes inscrit à aucune collecte <br>
+                                          Pensez à vous inscrire aux prochaines collectes !
+                                    </p>
+                                    <a href="{{ url_for('adhesionCollecte') }}" >
+                                         <button type="button" class="btn button action-main-button">
+                                               S'inscrire à une collecte
+                                         </button>
+                                    </a>
+                              </div>
+                        {% endif %}
+                  {% endif %}
+                  <div class="flex-horizontal ">
+                        <button class="btn btn-red confirmSup deconnexion">
+                              <a href="{{ url_for('deconnexion') }}">
+                                    Se déconnecter
+                              </a>
+                        </button>
+                        <button class="btn btn-red confirmSup" onclick="confirmSuppression()">
+                              Supprimer son compte
+                        </button>
+                  </div>
+            </div>
+      </div>
+</body>
+</html>
+
+

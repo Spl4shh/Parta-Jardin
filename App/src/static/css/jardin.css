@@ -1,0 +1,46 @@
+a{
+    color: #ffffff;
+
+}
+.jardin-container{
+    letter-spacing: 1px;
+    font-size: 16px;
+    margin-bottom: .5em;
+    background-color: #2C9D04;
+    border-radius: 2em;
+    color: #ffffff;
+}
+
+.username{
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+.subtitle{
+    margin-top: 0;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.info{
+    margin: 1.5em;
+    margin-top: .5em;
+    margin-bottom: 1em;
+
+}
+
+.infolist{
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
+
+
+.jardin-image{
+    width: 100%;
+    max-height: 32vw;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 1);
+    border-radius: 0 0 2em 2em;
+    border-top: black solid 2px;
+}

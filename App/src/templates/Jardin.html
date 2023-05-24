@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardin</title>
+    <link rel="stylesheet" href="/static/css/jardin.css">
+    <link rel="stylesheet" href="/static/css/general.css">
+    {{ fontawesome_html() }}
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+    <div class="mainContent">
+        <div class="top-main-content">
+            <div class="title">
+
+            </div>
+        </div>
+    </div>
+    {% if message != "" %}
+            <div style="margin: 0 auto;">
+                <p style="color: red;">
+                    {{ message }}
+                </p>
+            </div>
+        {% endif %}
+    <div class="subContent">
+        <div class="flex-horizontal flex-centered">
+            <div class="jardin-container">
+                <div class="info">
+                    <h2 class="username">Jardin de {{ proprietaire.prenom }} {{ proprietaire.nom }}</h2>
+                    {% if collectes and user.typeUser == 'etudiant'  %}
+                        {# <h3 class="subtitle"><a href="{{ url_for("adhesionCollecte") }}">Voir les prochaines collectes</a></h3> #}
+                    {% endif %}
+                    <ul class="infolist">
+                        <li><h2 class="description"><span class="fas fa-book-open"></span> {{ jardin.description }}</h2></li>
+                        <li><h2 class="adresse"><span class="fas fa-search-location"></span> {{ jardin.adresseJardin }}</h2></li>
+                        <li><h2 class="contact"><span class="fas fa-user"></span> <a href="mailto:{{ proprietaire.mail }}">{{ proprietaire.mail }}</a></h2></li>
+                    </ul>
+
+                </div>
+                <img src="{{ jardin.image }}" class="jardin-image">
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        Partajardin - 2022 | PP2I Telecom Nancy
+    </footer>
+</body>
+</html>

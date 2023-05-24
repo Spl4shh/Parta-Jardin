@@ -1,0 +1,61 @@
+.ul-barre-nav {
+    font-size: 1.8rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2C9D04;
+}
+
+.li-barre-nav {
+    float: left;
+    width: 20%;
+}
+
+.li-barre-nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.animationmenu a:hover {
+    background-color: #3DAE15;
+    color: white;
+}
+
+.animationmenu {
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    align-items: center;
+}
+
+.animationmenu::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 20%;
+    background: #fff;
+}
+
+.animationmenu::after {
+    transform: scale(0, 1);
+    transform-origin: 50% 100%;
+    transition: transform 0.5s ease;
+}
+
+.animationmenu:hover::after {
+    transform: scale(1, 1);
+}
+
+.partajardin {
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    text-align: center;
+    padding-top: 4px;
+    text-decoration: none;
+    font-size: 2.4rem;
+}

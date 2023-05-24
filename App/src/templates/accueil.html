@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+    <title>
+        Accueil
+    </title>
+</head>
+{%if user %}
+    {%if user.typeUser == "proprietaire" %}
+        {% include '/component/barreNavigationProprietaire.html' %}
+    {% else %}
+        {% include '/component/barreNavigationEtudiant.html' %}
+    {% endif %}
+
+
+
+    <div class="accueil">
+      <h1 class="title">Bienvenue {{user.prenom}} !</h1>
+      <p> Bienvenue sur Parta'jardin, l'application qui réunie toutes les générations<p>
+      <h2 style= "padding: 15px; font-size: 20px;"> Vos informations : </h2>
+
+      <p>Nom d'utilisateur : {{ user.login}}</p>
+      <p>Vous êtes un :  {{ user.typeUser}}</p>
+
+    </div>
+{% else %}
+      <div class="accueil">
+      <h1 class="title"> Bienvenue !</h1>
+      <p class="accueilAnonymeCentre"> Bienvenue sur Parta'jardin, l'application qui réunie toutes les générations<p>
+      <p class="accueilAnonyme">Les jardins partagés sont de plus en plus populaires dans les villes, car ils offrent de
+        nombreux avantages à la fois pour les personnes qui y participent et pour la collectivité.</p>
+      <p class="accueilAnonyme">Pour les jardiniers, les jardins partagés sont une source de plaisir et de détente, tout en
+        leur permettant de cultiver leurs propres aliments de manière écologique et saine. Ils sont
+        également un lieu de rencontre et de partage, où les gens peuvent échanger des conseils et
+        des astuces de jardinage, tout en apprenant les uns des autres.</p>
+      <p class="accueilAnonyme">Ils peuvent également jouer un rôle important dans la lutte contre la pollution et le
+        changement climatique en réduisant les émissions de gaz à effet de serre et en favorisant la biodiversité.</p>
+
+      <p class="accueilAnonyme">En résumé, les jardins partagés sont une excellente initiative pour améliorer la qualité de vie en ville,
+        tout en favorisant l'écologie et le lien social.</p>
+
+      <p class="accueilAnonyme">Alors n'attendez plus, et venez rejoindre la grande famille de parta'Jardin</p>
+
+      <div class="flex-horizontal flex-centered">
+          <a href="{{ url_for('inscription') }}">
+              <button class="inscription">
+                  S'inscrire
+              </button>
+          </a>
+          <a href="{{ url_for('connexionController') }}">
+              <button class="inscription">
+                  Se connecter
+              </button>
+          </a>
+      </div>
+
+
+  </div>
+{% endif %}
+{% endblock %}

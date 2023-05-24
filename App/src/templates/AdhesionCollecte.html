@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhésion à une collecte</title>
+    <link rel="stylesheet" href="/static/css/adhesionCollecte.css">
+    <link rel="stylesheet" href="/static/css/general.css">
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+    <div class="mainContent">
+        <div class="top-main-content">
+            <div class="title">
+
+            </div>
+        </div>
+    </div>
+    {% if message != "" %}
+            <div style="margin: 0 auto;">
+                <p style="color: red;">
+                    {{ message }}
+                </p>
+            </div>
+        {% endif %}
+    <div class="subContent">
+        <div class="flex-centered flex-vertical fl">
+            <form action="{{ url_for('adhesionCollecte') }}" method="post">
+                <input type="hidden" value="recherche" name="type">
+                <input type="text" class="barre-recherche" placeholder="Rechercher une collecte par produit ou/et par adresse (séparer par une virgule)" name="barre_recherche" id="barre_recherche">
+                <input type="submit" class="btn" value="Rechercher">
+            </form>
+           {% for collecte in collectes %}
+                {% if collecte['nombre_etu_inscrit'] < collecte ['nombre_etu_max'] or  collecte['deja_inscrit']%}
+                    <form action="{{ url_for('adhesionCollecte') }}" method="post">
+                    <input type="hidden" value="{{ collecte['id']}}" name="collecte_id" id="{{ collecte['id']}}">
+                    <input type="hidden" value="{{ collecte['id_jardin'] }}" name="collecte_id_jardin">
+                        <div class="card-collecte-container">
+                            <div class="card-collecte-content">
+                                <div class="card-collecte-content-preview">
+                                    <h2>  Collecte de {{ collecte["prenom_proprietaire"] }}</h2>
+                                    <h4>{{ collecte["adresse_jardin"] }}</h4>
+                                    <h4>le {{ collecte["date"] }}</h4>
+                                    <br>
+                                    <h6>{{ collecte["description_jardin"] }}</h6>
+                                    <a href="{{ url_for("jardin",idJardin=collecte['id_jardin']) }}">Voir le jardin</a>
+                                </div>
+                                <div class="card-collecte-info">
+                                    <h2>Produits disponibles :</h2>
+                                    <ul>
+                                        {% for produit in collecte["produit_disponible"] %}
+                                            <li>{{ produit["produit"] }} : {{ produit["quantite"] }} kg</li>
+                                        {% endfor %}
+
+                                    </ul>
+                                    <div class="card-inscription">
+                                    {% if collecte['deja_inscrit'] %}
+                                        <input type="hidden" value="desinscription" name="type">
+                                        <input type="submit" class="btn-desinsc" value="Se désinscrire ({{ collecte["nombre_etu_inscrit"] }}/{{ collecte['nombre_etu_max'] }} Inscrits)">
+
+                                    {% else %}
+                                        <input type="hidden" value="inscription" name="type">
+                                        <input type="submit" class="btn" value="S'inscrire ({{ collecte["nombre_etu_inscrit"] }}/{{ collecte['nombre_etu_max'] }} Inscrits)">
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+    <footer>
+        Partajardin - 2022 | PP2I Telecom Nancy
+    </footer>
+</body>
+</html>

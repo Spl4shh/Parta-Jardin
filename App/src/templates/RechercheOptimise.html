@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de parcours optimisé</title>
+    <link rel="stylesheet" href="/static/css/adhesionCollecte.css">
+    <link rel="stylesheet" href="/static/css/rechercheOptimise.css">
+    <link rel="stylesheet" href="/static/css/general.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/static/js/rechercheOptimise.js"></script>
+</head>
+<body>
+    {%if user %}
+        {%if user.typeUser == "proprietaire" %}
+            {% include '/component/barreNavigationProprietaire.html' %}
+        {% else %}
+            {% include '/component/barreNavigationEtudiant.html' %}
+        {% endif %}
+    {% endif %}
+    <div class="mainContent">
+        <div class="top-main-content">
+            <div class="title">
+
+            </div>
+        </div>
+    </div>
+    {% if message != "" %}
+        <div style="margin: 0 auto;">
+            <p style="color: red;">
+                {{ message }}
+            </p>
+        </div>
+    {% endif %}
+    <div class="subContent">
+        <form action="" method="post">
+            <div class="flex-centered flex-vertical">
+                <p>
+                    Date de la recherche de parcours optimisé :
+                </p>
+                <div class="flex-centered flex-horizontal">
+                    {% if dateRecherche %}
+                        <input type="date" name="dateRecherche" min="{{ dateDuJour.strftime('%d/%m/%Y') }}" id="dateRecherche" class="topRecherche" value="{{ dateRecherche }}">
+                    {% else %}
+                        <input type="date" name="dateRecherche" min="{{ dateDuJour.strftime('%d/%m/%Y') }}" id="dateRecherche" class="topRecherche" value="">
+                    {% endif %}
+                </div>
+                <div class="flex-centered flex-horizontal">
+                    <p>Distance maximale entre une collecte et votre domicile (en Km)</p>
+                    <select name="distanceMax" class="topRecherche">
+                        <option value="30">30</option>
+                        <option value="15">15</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn topRecherche" name="recherche" onclick="return verif()">Rechercher</button>
+                </div>
+            </div>
+        </form>
+        <div class="flex-centered flex-vertical">
+            {% if ordreOptimise %}
+                <p>
+                    Parcours avec distance optimale : <a  target="popup" href="{{ trajet }}" onclick="window.open({{ trajet }},'popup','width=600,height=600'); return false;">-> Importer dans google maps</a>
+                </p>
+                {% for collecte in ordreOptimise %}
+                    {% if infoCollecte[collecte.id]['nbInscription'] < collecte.nombreMaxEtudiants or infoCollecte[collecte.id]['dejaInscrit'] %}
+                        <form action="" method="post">
+                            {% if dateRecherche %}
+                                <input type="hidden" name="dateRecherche" min="" class="topRecherche" value="{{ dateRecherche }}">
+                            {% endif %}
+                            <input type="hidden" value="{{ collecte.id }}" name="collecte_id">
+                            <input type="hidden" value="{{ collecte.id_jardin }}" name="collecte_id_jardin">
+                            <div class="card-collecte-container">
+                                <div class="card-collecte-content">
+                                    <div class="card-collecte-content-preview">
+                                        <h2> Collecte </h2>
+                                        <h4>{{ infoCollecte[collecte.id]['jardin'].adresseJardin }}</h4>
+                                        <h4>le {{ collecte.date.strftime('%d/%m/%Y') }}</h4>
+                                        <br>
+                                        <h6>{{ infoCollecte[collecte.id]['jardin'].description }}</h6>
+                                    </div>
+                                    <div class="card-collecte-info">
+                                        <h2>Produits disponibles :</h2>
+                                        <ul>
+                                            {% for produit in infoCollecte[collecte.id]['produitsDispo'] %}
+                                                <li>{{ produit.produit }} : {{ produit.quantite }} kg</li>
+                                            {% endfor %}
+                                        </ul>
+                                        <div class="card-inscription">
+                                        {% if infoCollecte[collecte.id]['dejaInscrit'] %}
+                                            <input type="hidden" value="desinscription" name="type">
+                                            <button type="submit" class="btn-desinsc" name="desinscription">Se désinscrire ({{ infoCollecte[collecte.id]['nbInscription'] }}/{{collecte.nombreMaxEtudiants }} Inscrits)</button>
+                                        {% else %}
+                                            <input type="hidden" value="inscription" name="type">
+                                            <button type="submit" class="btn" name="inscription"> S'inscrire ({{ infoCollecte[collecte.id]['nbInscription'] }}/{{ collecte.nombreMaxEtudiants }} Inscrits)</button>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                {% endfor %}
+                <div>
+                    <p>
+                        Ordre des adresses à parcourir pour une tournée des collectes otpimisé :
+                    </p>
+                    <ol>
+                        <li>
+                            Départ : {{ user.adresse }}
+                        </li>
+                        {% for collecte in ordreOptimise %}
+                            {% if infoCollecte[collecte.id]['nbInscription'] < collecte.nombreMaxEtudiants or infoCollecte[collecte.id]['dejaInscrit'] %}
+                                <li>
+                                    --> {{ infoCollecte[collecte.id]['jardin'].adresseJardin }}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <p>
+                        Distance à parcourir (pour le circuit complet et retour) : {{ distanceTotale }}km
+                    </p>
+                </div>
+            {% elif dateRecherche %}
+                <div>
+                    <p>
+                        Aucune collecte ne correspond à votre recherche
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
